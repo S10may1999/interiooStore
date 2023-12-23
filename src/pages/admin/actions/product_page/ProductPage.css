@@ -1,0 +1,42 @@
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgba(rgb(236, 134, 134), rgb(93, 165, 93), rgb(153, 77, 210), 0.1);
+    color: black;
+  }
+
+#image{
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+  }
+
+.statusOption{
+    border: none;
+    border-radius: 10px;
+    font-size: medium;
+    padding: 10px;
+}
+
+.statusOption option{
+    padding: 10px;
+    border: none;
+    background-color: white;
+}

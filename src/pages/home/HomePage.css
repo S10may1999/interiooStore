@@ -1,0 +1,74 @@
+.homeMain{
+    background-color: rgba(231, 229, 229, 0.5);
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.homeMain h3{
+    margin: 15px;
+}
+.productCatery{
+    display: inline-block;
+    justify-content: space-between;
+    white-space: nowrap;
+    overflow-x: scroll;
+    width: 100%;
+    margin: 15px;
+    padding-right: 10px;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+    -ms-overflow-style: none;
+    
+}
+.productCatery::-webkit-scrollbar{
+    display: none;
+}
+
+.productCatery::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.3); 
+}
+
+.productlist img{
+
+    border-radius: 10px;
+    height: 150px;
+    width: 150px;
+    margin-right: 15px;
+}
+.MainCollection{
+    margin-right: 40px;
+}
+.product{
+    position: relative;
+    display: inline-block;
+
+}
+
+.text-overlay{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+.product:hover .text-overlay{
+    opacity: 1;
+}
+
+.productSoldSection{
+    display:flex;
+    justify-content: space-between;
+    margin: 15px;
+    overflow-x: scroll;
+
+}
+
+.productSoldSection::-webkit-scrollbar{
+    display: none;
+}
