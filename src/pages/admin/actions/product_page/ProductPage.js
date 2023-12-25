@@ -1,32 +1,48 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import MyContext from '../../../../context/MyContext'
+import { CiEdit } from "react-icons/ci";
+import { MdDeleteOutline } from "react-icons/md";
+import { Link } from 'react-router-dom';
+import Loader from '../../../../component/loader/Loader'
+
 
 const ProductPage = () => {
+
+  const context=useContext(MyContext);
+  const {loading,product,deleteProduct,editHandle}=context;
+
   return (
     <div>
       <table id='customers'>
-        
+        {loading && <Loader/>}
         <tr>
+          <th>sr.no.</th>
           <th>Product Image</th>
           <th>Product ID</th>
           <th>Product Name</th>
           <th>Product Price</th>
-          <th>Customer Name</th>
-          <th>Address</th>
-          <th>Status</th>
+          <th>Category</th>
+          <th>Action</th>
         </tr>
-        <tr>
-            <td><img id='image' src='https://camo.githubusercontent.com/0eacd79d5eb9d548c7358aed9fe6ac6223fcff1e88043a7f109316eb68bcd6c7/68747470733a2f2f7069632e706e6e65742e6465762f32353678323536'/></td>
-            <td>p-123</td>
-            <td>Furniture</td>
-            <td>₹25000</td>
-            <td>sandeep</td>
-            <td>thane</td>
+        {product.map((item,index)=>{
+          return(
+            <tr>
+            <td>{index+1}</td>
+            <td><img id='image' src={item.productImage[0]}/></td>
+            <td>{item.productId}</td>
+            <td>{item.productName}</td>
+            <td>{item.productPrice}</td>
+            <td>{item.category}</td>
             <td>
-              edit and delete 
+              <span>
+                <Link id='edit' to="/admin/product-update"><span  onClick={()=>editHandle(item)}><CiEdit/></span></Link>
+                <span id='delete' onClick={()=>deleteProduct(item)}><MdDeleteOutline/></span>
+              </span>
             </td>
           </tr>
+          )  
+        })}
         
-      
       </table>
       
     </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import './RegisterPage.css'
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, fireDB } from '../../../component/firebaseConfig/FirebaseConfig';
 import { Timestamp, addDoc, collection } from 'firebase/firestore';
@@ -21,7 +21,7 @@ const RegisterPage = () => {
 
   const userCreation=async()=>{
     
-    if(name =="" || email =="" || mobile =="" || password ==""){
+    if(name ==="" || email ==="" || mobile ==="" || password ===""){
       return toast.error("All the Fields are required !!")
     }
     else{
@@ -43,6 +43,8 @@ const RegisterPage = () => {
           "email":user.email,
           "mobile":mobile,
           "uid":user.uid,
+          "status":"active",
+          "customerOrder":0,
           "time":Timestamp.now()
         }
 
@@ -56,7 +58,7 @@ const RegisterPage = () => {
         setMobile("");
         setName("");
         setPassword("");
-        window.location.href('/login')
+        window.location.href='/login'
     }
     
   }

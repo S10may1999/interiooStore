@@ -40,3 +40,13 @@
     border: none;
     background-color: white;
 }
+
+#edit{
+  margin-right: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+#delete{
+  cursor: pointer;
+}

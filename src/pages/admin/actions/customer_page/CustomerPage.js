@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../OrderPage/OrderPage.css'
+import MyContext from '../../../../context/MyContext';
 
 const CustomerPage = () => {
   const [status,setStatus]=useState("active")
   const [colors,setColors]=useState('#dfda6a');
+  const context=useContext(MyContext);
+  const {userDetails}=context;
 
   try {
     useEffect(() => {
@@ -41,22 +44,26 @@ const CustomerPage = () => {
       <table id='customers'>
         
         <tr>
+          <th>sr.no.</th>
           <th>Customer Image</th>
           <th>Product Name</th>
           <th>Product Email</th>
           <th>Product Mobile</th>
           <th>Customer Orders</th>
-          <th>Address</th>
+          <th>Current status</th>
           <th>Active Status</th>
         </tr>
         
-        <tr>
+        {userDetails.map((item,index)=>{
+          return(
+            <tr>
+            <td>{index+1}</td>
             <td><img id='image' src='https://camo.githubusercontent.com/0eacd79d5eb9d548c7358aed9fe6ac6223fcff1e88043a7f109316eb68bcd6c7/68747470733a2f2f7069632e706e6e65742e6465762f32353678323536'/></td>
-            <td>Sandeep Sharma</td>
-            <td>sandep@gmail.com</td>
-            <td>+91-8291660633</td>
-            <td>10</td>
-            <td>thane</td>
+            <td>{item.name}</td>
+            <td>{item.email}</td>
+            <td>+91-{item.mobile}</td>
+            <td>0</td>
+            <td>{item.status}</td>
             <td>
               <select className='statusOption'  onChange={statusChange} style={{backgroundColor: colors,}} value={status}>
                 <option value="active">active</option>
@@ -64,6 +71,8 @@ const CustomerPage = () => {
               </select>  
             </td>
           </tr>
+          );
+        })}
         
       
       </table>

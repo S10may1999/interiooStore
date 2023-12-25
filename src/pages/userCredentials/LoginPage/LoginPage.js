@@ -11,10 +11,10 @@ const LoginPage = () => {
   const navigate=useNavigate()
   const loginBtn=async()=>{
     try {
-      if(email ==""| password==""){
+      if(email ===""| password===""){
         return toast.error("Fields can not be empty !!")
       }
-      else if(email=="admin@interioo.com" && password=="123456789"){
+      else if(email==="admin@interioo.com" && password==="123456789"){
         window.localStorage.setItem("user",JSON.stringify({"email":"admin@interioo.com","password":"123456789"}));
         navigate("/admin")
       }

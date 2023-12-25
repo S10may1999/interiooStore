@@ -27,7 +27,9 @@ ul {
     justify-content: space-between;
 }
 
-.productPageContainer button{
+.productPageContainer #productaddBtn{
+    color: black;
+    text-decoration: none;
     cursor: pointer;
     padding: 10px;
     margin-top: 15px;

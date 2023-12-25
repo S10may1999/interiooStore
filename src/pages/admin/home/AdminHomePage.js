@@ -5,11 +5,14 @@ import OrderPage from '../actions/OrderPage/OrderPage'
 import ProductPage from '../actions/product_page/ProductPage'
 import CustomerPage from '../actions/customer_page/CustomerPage'
 import Layout from '../../../component/layout/Layout'
+import { Link } from 'react-router-dom'
+import Loader from '../../../component/loader/Loader'
 
 
 const AdminHomePage = () => {
     return (
         <Layout>
+            
             <div className='homeMain'>
                 <Tabs style={{ margin: 20 }}>
                     <TabList style={{
@@ -34,7 +37,7 @@ const AdminHomePage = () => {
                     <TabPanel>
                         <div className='productPageContainer'>
                             <h2>Product page</h2>
-                            <button>Add Product</button>
+                            <Link id='productaddBtn' to="/admin/product-add">Add Product</Link>
                         </div>
                         <ProductPage />
                     </TabPanel>
