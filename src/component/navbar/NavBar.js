@@ -20,17 +20,17 @@ const NavBar=()=>{
     return(
         <div>
             <div className='nav'>
-            <Link to='/' id="logo">Interioo</Link>
+            {users?.email=="admin@interioo.com"?<Link to='/admin' id="logo">Interioo</Link>:<Link to='/' id="logo">Interioo</Link>}
             <ul>
-                <li><Link to="/" id='page'>Home</Link></li>
-                <li><Link id='page'>Products</Link></li>
-                {users?<li><a onClick={logoutFunction} id='page'> Logout</a></li>:<li><Link to="/login" id='page'> Sign In</Link></li>}
+                {users?.email=="admin@interioo.com"?<Link to="/admin" id='page'><li>Dashboard</li></Link>:<Link to="/" id='page'><li>Home</li></Link>}
+                {users?.email=="admin@interioo.com"?<Link id='page'><li>Report</li></Link>:<Link id='page'><li>Products</li></Link>}
+                {users?<a onClick={logoutFunction} id='page'><li> Logout</li></a>:<Link to="/login" id='page'><li> Sign In</li></Link>}
                 <input placeholder='Search here...'/>
                 <button>Search</button>
-                <span id="cartBtn">
+                {users?.email=="admin@interioo.com"?"":<span id="cartBtn">
                     <PiShoppingCartLight style={{fontSize:20,marginRight:10}}/>
                     <span id='cartCount'>0</span>
-                </span>
+                </span>}
             </ul>
             
         </div>

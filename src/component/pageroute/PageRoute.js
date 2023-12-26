@@ -14,11 +14,12 @@ import ProductUpdate from '../../pages/admin/productAddAndUpdate/productUpdate/P
 
 
 const PageRoute = () => {
+    const users=JSON.parse(window.localStorage.getItem("user"));
     return (
         <MyState>
             <Router>
                 <Routes>
-                    <Route path='/' element={<HomePage />}></Route>
+                    <Route path='/' element={users?.email=="admin@interioo.com"?<AdminHomePage/>:<HomePage/>}></Route>
                     <Route path='/admin' element={<ViewCheckForAdmin><AdminHomePage /></ViewCheckForAdmin>}></Route>
                     <Route path='/login' element={<LoginPage />}></Route>
                     <Route path='/register' element={<RegisterPage />}></Route>
