@@ -1,5 +1,6 @@
 .ProductCard{
     border-radius: 10px;
+    width: 210px;
     margin-right: 15px;
     position: relative;
 }
@@ -15,7 +16,7 @@
 
 .cusrol-tab{
     position: absolute;
-    top: 35%;
+    top: 15%;
     font-size: 25px;
     font-weight: bold;
     
@@ -40,11 +41,13 @@
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
     font-weight: 500;
     color: grey;
+    word-break: break-all;
 }
 
 .productTitle{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 500;
+    margin-bottom: 5px;
 }
 
 .actionButton button{
@@ -60,4 +63,9 @@
 }
 #cart{
     background-color: #f4d170;
+}
+
+
+.productprice{
+    font-weight: 500;
 }

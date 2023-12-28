@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './HomePage.css'
 import ProductCard from '../../component/productcard/ProductCard'
 import Layout from '../../component/layout/Layout';
+import MyContext from '../../context/MyContext';
+import Loader from '../../component/loader/Loader';
 
 const HomePage = () => {
   const imgList = [
@@ -9,6 +11,11 @@ const HomePage = () => {
     "https://st4.depositphotos.com/1023934/37752/i/450/depositphotos_377527168-stock-photo-interior-design-modern-living-room.jpg",
     "https://img.freepik.com/free-photo/mid-century-modern-living-room-interior-design-with-monstera-tree_53876-129804.jpg"
   ];
+
+  const context=useContext(MyContext);
+  const {product,getProductData,loading}=context
+
+
 
   return (
     <Layout>
@@ -93,28 +100,17 @@ const HomePage = () => {
 
             </div>
           </div>
-
+            {loading&&<Loader/>}
         </div>
         <h3>Most Sold</h3>
         <div className='productSoldSection'>
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
-          <ProductCard demoimage={imgList} />
+          {product.map((item)=>{
+            return(
+              <ProductCard demoimage={item.productImage} pname={item.productName} pprice={item.productPrice} product={item} />
+            )
+          })}
+          
+
         </div>
       </div>
     </Layout>

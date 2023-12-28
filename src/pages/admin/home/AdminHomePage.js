@@ -36,13 +36,13 @@ const AdminHomePage = () => {
                     </TabPanel>
                     <TabPanel>
                         <div className='productPageContainer'>
-                            <h2>Product page</h2>
+                            <h2>Products</h2>
                             <Link id='productaddBtn' to="/admin/product-add">Add Product</Link>
                         </div>
                         <ProductPage />
                     </TabPanel>
                     <TabPanel>
-                        <h2>Customer Page</h2>
+                        <h2>Customers</h2>
                         <CustomerPage />
                     </TabPanel>
 

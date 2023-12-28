@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import './ProductCard.css'
+import {useDispatch,useSelector} from 'react-redux';
+import { addToCart } from "../../redux/cartSlice";
+import MyContext from "../../context/MyContext";
+import Loader from "../loader/Loader";
+import { toast } from "react-toastify";
 
 
 const ProductCard = (props) => {
+
     let [count,setCount]=useState(0)
     const lst=[];
     for(let i=0;i<props.demoimage?.length;i++){
@@ -27,6 +33,28 @@ const ProductCard = (props) => {
         }
     }
 
+    // const context=useContext(MyContext);
+    // const {addToCart}=context;
+   
+    const dispatch=useDispatch();
+    const addedProduct=useSelector((state)=>state.cart)
+
+    const addProduct=(item)=>{
+        const users=JSON.parse(window.localStorage.getItem("user"));
+        if(users){
+        dispatch(addToCart(item));
+        toast.success("Added Successfully !!")
+        console.log(addedProduct)
+        }else{
+            toast.error("please Login to add !")
+            setTimeout(()=>{
+                window.location.href="/login"
+            },800)
+        }
+    }
+
+    
+    
     return (
             <div className="ProductCard">
                 <div className="productImage">
@@ -41,14 +69,14 @@ const ProductCard = (props) => {
                         Interioo
                     </div>
                     <div className="productTitle">
-                        Product Tile
+                        {props.pname}
                     </div>
                     <div className="productprice">
-                        Price
+                     ₹{props.pprice}
                     </div>
                     <div className="actionButton">
                         <button id="buy">Buy</button>
-                        <button id="cart">Add to Cart</button>
+                        <button id="cart"  onClick={()=>addProduct(props.product)}>Add to Cart</button>
                     </div>
                 </div>
             </div>

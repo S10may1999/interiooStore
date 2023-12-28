@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import MyContext from './MyContext'
-import { query, collection, orderBy, onSnapshot, QuerySnapshot, setDoc, doc, deleteDoc,addDoc,Timestamp } from 'firebase/firestore'
-import { fireDB } from '../component/firebaseConfig/FirebaseConfig'
+import { query, collection, orderBy, onSnapshot, QuerySnapshot, setDoc, doc, deleteDoc,addDoc,Timestamp, updateDoc, where } from 'firebase/firestore'
+import { auth, fireDB } from '../component/firebaseConfig/FirebaseConfig'
 import { toast } from 'react-toastify'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 
 const MyState = (props) => {
@@ -90,7 +91,7 @@ const MyState = (props) => {
   const registeredUserInformation = async () => {
     try {
       setLoading(true)
-      const userDataQueryRef = query(collection(fireDB, "users"), orderBy('time'));
+      const userDataQueryRef = query(collection(fireDB, "usersData"), orderBy('time'));
 
       const data = onSnapshot(userDataQueryRef, (QuerySnapshot) => {
         let userArray = [];
@@ -132,8 +133,31 @@ const MyState = (props) => {
     getProductData();
     registeredUserInformation();
   })
+
+  const [cartProduct,setCartProduct]=useState({
+    uid:null,
+    productsAdded:null,
+    time:Timestamp.now()
+  })
+
+  const addProductToFirebase=async()=>{
+    const userDetail=JSON.parse(window.localStorage.getItem('user'))
+    const cartItem=JSON.parse(window.localStorage.getItem("cart"))
+    setCartProduct({
+      uid:userDetail.user.uid,
+      productsAdded:cartItem,
+    })
+    if(cartProduct.uid !=null || cartProduct.productsAdded !=null){
+      const cartRef=collection(fireDB,"productCart");
+      await addDoc(cartRef,cartProduct);
+    }
+    else{
+      return;
+    }
+  }
+  
   return (
-    <MyContext.Provider value={{ loading, setLoading, product,setProduct ,userDetails,editHandle,updateProduct,deleteProduct,addProduct,setAddProduct,productAddBtn }}>
+    <MyContext.Provider value={{ loading, setLoading, product,setProduct ,userDetails,editHandle,updateProduct,deleteProduct,addProduct,setAddProduct,productAddBtn,setCartProduct,addProductToFirebase }}>
       {props.children}
     </MyContext.Provider>
   )

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, fireDB } from '../../../component/firebaseConfig/FirebaseConfig';
-import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import { Timestamp, addDoc, collection, setDoc } from 'firebase/firestore';
 import MyContext from '../../../context/MyContext';
 
 
@@ -45,13 +45,13 @@ const RegisterPage = () => {
           "uid":user.uid,
           "status":"active",
           "customerOrder":0,
+          "productCart":[],
           "time":Timestamp.now()
         }
 
-        const userRef=collection(fireDB,"users");
-
-        const dataAdd=addDoc(userRef,userDatabaseInformation);
-        console.log(dataAdd.id)
+        const userAddToDatabaseReference=collection(fireDB,"usersData");
+        const userDataAddUsingReference=await addDoc(userAddToDatabaseReference,userDatabaseInformation);
+        console.log(userDataAddUsingReference)
         setLoading(false);
         toast.success("User Suucessfully Created.please login !");
         setEmail("");

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './NavBar.css'
 import { CiHome } from "react-icons/ci";
 import { CgMenuGridO } from "react-icons/cg";
@@ -7,10 +7,16 @@ import { AiOutlineLogin } from "react-icons/ai";
 import ProductCard from '../productcard/ProductCard';
 import { Link,useNavigate } from 'react-router-dom';
 import { PiShoppingCartLight } from "react-icons/pi";
-
+import {useSelector} from 'react-redux';
 
 
 const NavBar=()=>{
+    const cartItem=useSelector((state)=>state.cart);
+    const userLoggied=JSON.parse(window.localStorage.getItem("user"));
+    useEffect(()=>{
+        window.localStorage.setItem("cart",JSON.stringify(cartItem));
+    },[cartItem])
+
     const navigator=useNavigate()
     const users=JSON.parse(window.localStorage.getItem("user"));
     const logoutFunction=()=>{
@@ -29,7 +35,7 @@ const NavBar=()=>{
                 <button>Search</button>
                 {users?.email=="admin@interioo.com"?"":<span id="cartBtn">
                     <PiShoppingCartLight style={{fontSize:20,marginRight:10}}/>
-                    <span id='cartCount'>0</span>
+                    {userLoggied?<span id='cartCount'>{cartItem.length !=0?cartItem.length:0}</span>:<span id='cartCount'>0</span>}
                 </span>}
             </ul>
             
