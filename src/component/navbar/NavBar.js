@@ -33,10 +33,12 @@ const NavBar=()=>{
                 {users?<a onClick={logoutFunction} id='page'><li> Logout</li></a>:<Link to="/login" id='page'><li> Sign In</li></Link>}
                 <input placeholder='Search here...'/>
                 <button>Search</button>
+                <Link to="/cart">
                 {users?.email=="admin@interioo.com"?"":<span id="cartBtn">
                     <PiShoppingCartLight style={{fontSize:20,marginRight:10}}/>
                     {userLoggied?<span id='cartCount'>{cartItem.length !=0?cartItem.length:0}</span>:<span id='cartCount'>0</span>}
                 </span>}
+                </Link>
             </ul>
             
         </div>

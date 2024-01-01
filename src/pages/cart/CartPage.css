@@ -1,0 +1,58 @@
+.cartMain{
+    background-color: rgba(231, 229, 229, 0.5);
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.heading{
+    margin: 20px;
+    font-size: large;
+    font-weight: 700;
+
+}
+.contentContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.produtListContainer{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 50rem;
+}
+
+.productTotalContainer{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 20rem;
+}
+.paymentDetails{
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.amountCost{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.gstDetails{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.netTotal{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#line{
+    height: 1px;
+    background-color: gray;
+}
